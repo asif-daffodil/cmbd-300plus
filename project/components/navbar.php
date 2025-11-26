@@ -1,7 +1,7 @@
 <?php  
     $pageName = basename($_SERVER['PHP_SELF']);
 ?>
-<header class="shadow-lg tracking-wide relative z-50">
+<div class="shadow-lg tracking-wide relative z-50">
     <section
         class="flex items-center relative py-3 lg:px-10 px-4 border-gray-200 border-b bg-white lg:min-h-[70px] max-lg:min-h-[60px]">
         <a href="javascript:void(0)" class="shrink-0 max-sm:hidden"><img
@@ -59,11 +59,15 @@
                                 class="absolute left-auto -ml-1 -top-2 rounded-full bg-red-500 px-1 py-0 text-xs text-white">3</span>
                         </span>
                     </li>
+                    <?php if (!isset($_SESSION['user'])) { ?>
                     <li class="flex text-[15px] max-lg:py-2 px-4">
-                        <button
-                            class="px-4 py-2 text-sm font-medium text-slate-900 border border-slate-900 bg-transparent cursor-pointer">Sign
-                            In</button>
+                        <a href="./sign-in.php" class="px-4 py-2 text-sm text-slate-900 border border-slate-900 bg-transparent  cursor-pointer hover:bg-yellow-500 <?= $pageName == "sign-in.php" || $pageName == "sign-up.php" ? 'bg-yellow-500 font-bold' : '' ?>">Sign In/ Sign up</a>
                     </li>
+                    <?php } else { ?>
+                    <li class="flex text-[15px] max-lg:py-2 px-4">
+                        <a href="./logout.php" class="px-4 py-2 text-sm text-slate-900 border border-slate-900 bg-transparent  cursor-pointer hover:bg-yellow-500">Logout</a>
+                    </li>
+                    <?php } ?>
                     <li id="toggleOpen" class="lg:hidden">
                         <button class="cursor-pointer">
                             <svg class="w-7 h-7" fill="#333" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +111,7 @@
                     class="hover:text-yellow-300 <?= $pageName == "contact.php" ? "text-yellow-300":"text-white" ?> text-[15px] font-normal block">Contact</a></li>
         </ul>
     </div>
-</header>
+</div>
 <script>
     var toggleOpen = document.getElementById('toggleOpen');
     var toggleClose = document.getElementById('toggleClose');
