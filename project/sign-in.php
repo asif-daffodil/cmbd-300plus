@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($_SESSION['user'])) {
     // User is already logged in, redirect to home page
     header('Location: index.php');
@@ -46,7 +45,7 @@ if (isset($_POST['loginBtn'])) {
                         text: 'Welcome back!',
                         confirmButtonText: 'OK'
                     }).then(() => {
-                        window.location.href = 'index.php';
+                        window.location.href = './';
                     });
                 </script>";
       } else {

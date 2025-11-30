@@ -1,5 +1,4 @@
 <?php
-session_start();
 if (isset($_SESSION['user'])) {
     // User is already logged in, redirect to home page
     header('Location: index.php');
