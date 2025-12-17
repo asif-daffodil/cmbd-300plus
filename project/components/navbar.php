@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+              
 $pageName = basename($_SERVER['PHP_SELF']);
 ?>
 <div class="shadow-lg tracking-wide relative z-50">
@@ -50,19 +53,26 @@ $pageName = basename($_SERVER['PHP_SELF']);
                     toggleClear();
                 })();
             </script>
+            <?php  
+                $totalInCart = 0;
+                if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+                    foreach ($_SESSION['cart'] as $item) {
+                        $totalInCart += $item['quantity'];
+                    }
+                }
+            ?>
             <div class="ml-auto">
-
                 <ul class="flex items-center">
                     <li class="max-lg:py-2 px-4 cursor-pointer">
-                        <span class="relative">
+                        <a class="relative" href="./cart.php">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 inline" viewBox="0 0 512 512">
                                 <path
                                     d="M164.96 300.004h.024c.02 0 .04-.004.059-.004H437a15.003 15.003 0 0 0 14.422-10.879l60-210a15.003 15.003 0 0 0-2.445-13.152A15.006 15.006 0 0 0 497 60H130.367l-10.722-48.254A15.003 15.003 0 0 0 105 0H15C6.715 0 0 6.715 0 15s6.715 15 15 15h77.969c1.898 8.55 51.312 230.918 54.156 243.71C131.184 280.64 120 296.536 120 315c0 24.812 20.188 45 45 45h272c8.285 0 15-6.715 15-15s-6.715-15-15-15H165c-8.27 0-15-6.73-15-15 0-8.258 6.707-14.977 14.96-14.996zM477.114 90l-51.43 180H177.032l-40-180zM150 405c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm167 15c0 24.813 20.188 45 45 45s45-20.188 45-45-20.188-45-45-45-45 20.188-45 45zm45-15c8.27 0 15 6.73 15 15s-6.73 15-15 15-15-6.73-15-15 6.73-15 15-15zm0 0"
                                     data-original="#000000"></path>
                             </svg>
                             <span
-                                class="absolute left-auto -ml-1 -top-2 rounded-full bg-red-500 px-1 py-0 text-xs text-white">3</span>
-                        </span>
+                                class="absolute left-auto -ml-1 -top-2 rounded-full bg-red-500 px-1 py-0 text-xs text-white"><?= $totalInCart ?? 0 ?></span>
+                        </a>
                     </li>
                     <?php if (!isset($_SESSION['user'])) { ?>
                         <li class="flex text-[15px] max-lg:py-2 px-4">
