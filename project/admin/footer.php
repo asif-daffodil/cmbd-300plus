@@ -1,13 +1,4 @@
-<script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
-<script>
-    let table = new DataTable('#productsTable', {
-        responsive: true
-    });
 
-    $(document).ready(function() {
-        $('#productsTable').DataTable();
-    });
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Select all parent menu items with submenus

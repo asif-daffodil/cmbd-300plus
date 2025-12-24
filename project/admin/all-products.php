@@ -201,7 +201,16 @@ if(isset($_POST["edit_product"])){
         <?php } ?>
     </div>
 </div>
+<script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+<script>
+    let table = new DataTable('#productsTable', {
+        responsive: true
+    });
 
+    $(document).ready(function() {
+        $('#productsTable').DataTable();
+    });
+</script>
 <script>
     const productImageInput = document.getElementById('product-image');
     const previewImage = document.getElementById('preview-image');

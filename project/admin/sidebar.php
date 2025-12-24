@@ -112,13 +112,13 @@
                             </a>
                             <ul class="sub-menu max-h-0 overflow-hidden transition-[max-height] duration-500 ease-in-out ml-8">
                                 <li>
-                                    <a href="javascript:void(0)"
+                                    <a href="./pending-orders.php"
                                         class="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300">
                                         <span>Pending</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)"
+                                    <a href="./completed-orders.php"
                                         class="text-gray-300 text-sm font-medium block cursor-pointer hover:bg-[#0b1739] rounded-md px-3 py-2 transition-all duration-300">
                                         <span>Completed</span>
                                     </a>
