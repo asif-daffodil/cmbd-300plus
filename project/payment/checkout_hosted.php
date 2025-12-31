@@ -154,7 +154,6 @@ $post_data['convenience_fee'] = "3";
 
 # First, save the input data into local database table `orders`
 $query = new OrderTransaction();
-$sql = $query->saveTransactionQuery($post_data);
 
 # Execute the query to save order data
 $sql2 = $query->saveCartItems($post_data);
@@ -165,6 +164,8 @@ foreach ($sql2 as $sql) {
         echo "Error: " . $sql . "<br>" . $conn_integration->error;
     }
 }
+
+$sql = $query->saveTransactionQuery($post_data);
 
 if ($conn_integration->query($sql) === TRUE) {
 

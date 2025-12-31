@@ -18,8 +18,8 @@ class OrderTransaction {
         $transaction_id = $post_data['tran_id'];
         $currency = $post_data['currency'];
 
-        $sql = "INSERT INTO orders (name, email, phone, amount, address, transaction_id,currency)
-                                    VALUES ('$name', '$email', '$phone','$transaction_amount','$address','$transaction_id','$currency')";
+        $sql = "INSERT INTO orders (name, email, phone, amount, address, transaction_id, currency)
+                                    VALUES ('$name', '$email', '$phone','$transaction_amount', '$address', '$transaction_id', '$currency')";
 
         return $sql;
     }
@@ -37,14 +37,15 @@ class OrderTransaction {
             $product = is_array($item) ? ($item['product'] ?? '') : ($item->product ?? '');
             $quantity = is_array($item) ? ($item['quantity'] ?? '') : ($item->quantity ?? '');
             $amount = is_array($item) ? ($item['amount'] ?? '') : ($item->amount ?? '');
+            $amount = $amount * $quantity;
 
             // Skip invalid rows
             if ($sku === '' || $product === '' || $quantity === '' || $amount === '') {
                 continue;
             }
 
-            $sql[] = "INSERT INTO order_items (transaction_id, sku, product, quantity, amount)
-                      VALUES ('$transaction_id', '$sku', '$product', '$quantity', '$amount');";
+            $sql[] = "INSERT INTO order_items (transaction_id, product_id, product, quantity, amount, status)
+                      VALUES ('$transaction_id', '$sku', '$product', '$quantity', '$amount', 'Pending');";
         }
         return $sql;
     }
